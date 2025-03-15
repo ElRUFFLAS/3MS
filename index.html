@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta Recibida con Detalles de Amor</title>
+  <style>
+    body {
+      background: linear-gradient(45deg, #fff5e6, #ffe6f2);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      overflow: hidden; /* Evita scroll por los corazones flotantes */
+      position: relative;
+    }
+    h1 {
+      margin-top: 50px;
+      font-size: 2em;
+      color: #ff3366;
+      text-shadow: 1px 1px 2px #fff;
+    }
+    /* Estilo de la carta (lado cerrado) */
+    .card {
+      width: 300px;
+      height: 200px;
+      margin: 20px auto;
+      background-color: pink;
+      border: 2px solid #ff69b4;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      animation: appear 1s ease-out;
+    }
+    /* Animación de pulsación para el corazón central */
+    .card .heart {
+      font-size: 50px;
+      color: red;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    /* Ocultar elementos inicialmente */
+    .hidden {
+      display: none;
+    }
+    /* Estilo de la carta abierta */
+    .content-card {
+      width: 300px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 2px solid #ff99cc;
+      border-radius: 10px;
+      text-align: left;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeInZoom 0.5s forwards;
+      position: relative;
+    }
+    /* Decoración de amor en la carta abierta */
+    .content-card::before {
+      content: "💖";
+      font-size: 30px;
+      position: absolute;
+      top: -15px;
+      left: -15px;
+    }
+    .content-card::after {
+      content: "💖";
+      font-size: 30px;
+      position: absolute;
+      bottom: -15px;
+      right: -15px;
+    }
+    /* Botones */
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ff69b4;
+      color: white;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #ff4070;
+    }
+    /* Animación de aparición para la carta cerrada */
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Animación al abrir la carta */
+    @keyframes fadeInZoom {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    /* Contenedor para corazones flotantes */
+    .floating-hearts {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .floating-heart {
+      position: absolute;
+      color: #ff66b2;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+    }
+    /* Animación de los corazones flotantes: suben y se desvanecen */
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0;
+      }
+    }
+    /* Detalles extra de amor que emergen al abrir la carta */
+    .love-details {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 10;
+      animation: fadeInLove 2s forwards;
+    }
+    .love-details p {
+      margin: 5px;
+      font-size: 18px;
+      color: #ff3366;
+      text-shadow: 1px 1px 2px #fff;
+      opacity: 0;
+      animation: popUp 2s forwards;
+    }
+    @keyframes fadeInLove {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes popUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Te ha llegado una carta llena de amor!</h1>
+  <button id="siguienteBtn">Siguiente</button>
+
+  <!-- Carta cerrada -->
+  <div id="letterContainer" class="hidden">
+    <div class="card">
+      <div class="heart">♥</div>
+    </div>
+    <button id="abrirBtn">Abrir carta</button>
+  </div>
+
+  <!-- Carta abierta con mensaje personalizable -->
+  <div id="openedLetter" class="hidden content-card">
+    <p> My amor Gloria,
+
+        Hoy celebramos tres meses de un camino que apenas empieza, pero que ya me llena el corazón de alegría y gratitud. Cada día a tu lado es un descubrimiento, una risa compartida y un momento en el que aprendo lo que significa amar de verdad.
+        
+        Desde que te conocí, supe que había encontrado a alguien unica y muy especial. Tus palabras, tu sonrisa y esa luz que irradias me inspiran a ser mejor y a ver el mundo con más esperanza. En cada abrazo, en cada beso,  en cada mirada, encuentro la paz y el entusiasmo que solo tú sabes dar.
+        
+        Estos tres meses han sido una hermosa aventura, y espero con ilusión todo lo que nos espera en el futuro. Gracias por ser mi compañera, mi amiga y mi amor. Quiero que sepas que cada instante contigo es un regalo, y que anhelo seguir construyendo recuerdos a tu lado.
+        
+        Con todo mi cariño❤️💕
+        
+        Raul
+        
+        
+        
+        
+        
+        
+        
+        
+        
+  </div>
+
+  <!-- Corazones flotantes -->
+  <div class="floating-hearts" id="floatingHearts"></div>
+
+  <!-- Detalles extra de amor que se mostrarán al abrir la carta -->
+  <div id="loveDetails" class="love-details hidden">
+    <p>Te amo con todo mi corazón</p>
+    <p>Eres mi inspiración diaria</p>
+    <p>Siempre juntos, más allá del tiempo</p>
+  </div>
+
+  <script>
+    // Mostrar la carta cerrada al pulsar "Siguiente"
+    document.getElementById('siguienteBtn').addEventListener('click', function() {
+      document.getElementById('letterContainer').classList.remove('hidden');
+      this.classList.add('hidden');
+    });
+
+    // Al abrir la carta, se muestra la carta abierta y los detalles de amor
+    document.getElementById('abrirBtn').addEventListener('click', function() {
+      document.getElementById('openedLetter').classList.remove('hidden');
+      document.getElementById('letterContainer').classList.add('hidden');
+      document.getElementById('loveDetails').classList.remove('hidden');
+    });
+
+    // Función para crear corazones flotantes
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('floating-heart');
+      heart.innerText = '♥';
+      // Posición horizontal aleatoria
+      heart.style.left = Math.random() * 100 + 'vw';
+      // Duración aleatoria entre 5 y 10 segundos
+      const duration = 5 + Math.random() * 5;
+      heart.style.animationDuration = duration + 's';
+      // Tamaño aleatorio
+      const size = 20 + Math.random() * 30;
+      heart.style.fontSize = size + 'px';
+      // Retraso aleatorio
+      heart.style.animationDelay = Math.random() * 5 + 's';
+      document.getElementById('floatingHearts').appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, duration * 1000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+</body>
+</html>
